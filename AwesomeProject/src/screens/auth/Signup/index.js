@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {View,Text, ScrollView} from 'react-native'
+import {View,Text, ScrollView, SafeAreaView} from 'react-native'
 import AuthHeader from '../../../components/AuthHeader'
 import CheckBox from '../../../components/CheckBox'
 import Input from '../../../components/input'
@@ -8,17 +8,24 @@ import {styles} from './styles'
 import Seperator from '../../../components/Seperator'
 
 
-const Signup = () => {
+const Signup = ({navigation}) => {
  
   const [checked,setChecked]=useState(false);
 
   const onSignIn=()=>{
-
+ navigation.navigate('Signin')
   }
+  const onBack=()=>{
+    navigation.goBack();
+    }
 
+    
   return (
+    <SafeAreaView>
+
+    
   <ScrollView style={styles.container}>
- <AuthHeader title="Sign Up"/>
+ <AuthHeader onBackPress={onBack}  title="Sign Up"/>
 
  <Input label="Name" placeholder="John Doe"/>
  <Input label="E-mail" placeholder="example@gmail.com"/>
@@ -33,7 +40,7 @@ const Signup = () => {
 
  </ScrollView>
 
-    
+ </SafeAreaView>
   )
 }
 
